@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean id="PropertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" singleton="false">
+        <property name="systemPropertiesMode" value="2"/>
+        <property name="location" value="classpath:cytoweb.properties"/>
+    </bean>
+</beans>
