@@ -1,0 +1,86 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.systemsbiology.apps.cytoweb</groupId>
+        <artifactId>cytoweb</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>web-ui</artifactId>
+    <packaging>war</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>Web User Interface</name>
+
+    <build>
+        <finalName>cytoweb</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>deployJsps</id>
+                        <phase>compile</phase>
+                        <configuration>
+                            <tasks>
+                                <copy todir="/hrovira/servers/apache-tomcat-5.5.20/webapps/cytoweb" overwrite="true">
+                                    <fileset dir="src/main/webapp">
+                                        <include name="**/*.jsp"/>
+                                    </fileset>
+                                </copy>
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>deployWeb</id>
+                        <phase>package</phase>
+                        <configuration>
+                            <tasks>
+                                <delete dir="/hrovira/servers/apache-tomcat-5.5.20/webapps/cytoweb"/>
+                                <copy todir="/hrovira/servers/apache-tomcat-5.5.20/webapps">
+                                    <fileset dir="target">
+                                        <include name="cytoweb.war"/>
+                                    </fileset>
+                                </copy>
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>geronimo-spec</groupId>
+            <artifactId>geronimo-spec-j2ee</artifactId>
+            <version>1.4-rc4</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+    </dependencies>
+
+</project>
