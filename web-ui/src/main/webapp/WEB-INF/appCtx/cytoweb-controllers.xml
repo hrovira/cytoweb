@@ -6,6 +6,10 @@
         <property name="viewName" value="cat"/>
     </bean>
 
+    <bean id="networkContainerController" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+        <property name="viewName" value="networkContainer"/>
+    </bean>
+
     <bean id="networkActionsController" class="org.systemsbiology.cytoweb.mvc.controllers.NetworkActionsController">
         <property name="provider" ref="providerBean"/>
     </bean>

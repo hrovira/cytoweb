@@ -7,6 +7,7 @@
             <value>
                 /cat.html=catController
                 /getNetwork.html=networkActionsController
+                /getNetworkContainer.html=networkContainerController
             </value>
         </property>
     </bean>
