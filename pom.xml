@@ -9,6 +9,11 @@
     <name>Cytoscape Web Application</name>
     <url>http://apps.systemsbiology.org</url>
 
+    <scm>
+        <connection>http://cytoweb.googlecode.com/svn/</connection>
+        <developerConnection>https://cytoweb.googlecode.com/svn/</developerConnection>
+    </scm>
+
     <developers>
         <developer>
             <name>Hector Rovira</name>
