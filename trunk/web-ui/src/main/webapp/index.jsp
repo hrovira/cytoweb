@@ -5,7 +5,7 @@
     <li><a href="cat.html">Cat</a></li>
     <li><a href="getNetwork.html">Network</a></li>
 </ul>
-<form action="getNetwork.html" method="POST">
+<form action="getNetworkContainer.html" method="POST">
     <input type="text" name="networkFile" size="100"/>
     <br/>
     <input type="submit" value="Get Network"/>
