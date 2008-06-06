@@ -1,9 +1,8 @@
-<!DOCTYPE web-app PUBLIC
-        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
-        "http://java.sun.com/dtd/web-app_2_4.dtd" >
-<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
 
     <display-name>Cytoscape Web Application</display-name>
 
@@ -11,7 +10,6 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>
             /WEB-INF/appCtx/cytoweb-*.xml
-            /WEB-INF/appCtx/cytoscape-core.xml
             /WEB-INF/appCtx/cytoscapeCoreProviderBean.xml
         </param-value>
     </context-param>
@@ -28,17 +26,7 @@
     <!-- We map all service request to the springws servlet. -->
     <servlet-mapping>
         <servlet-name>cytoweb</servlet-name>
-        <url-pattern>*.html</url-pattern>
+        <url-pattern>*.ctwb</url-pattern>
     </servlet-mapping>
 
-    <!--<jsp-config>-->
-        <!--<taglib>-->
-            <!--<taglib-uri>http://java.sun.com/jstl/fmt</taglib-uri>-->
-            <!--<taglib-location>classpath:fmt.tld</taglib-location>-->
-        <!--</taglib>-->
-        <!--<taglib>-->
-            <!--<taglib-uri>http://java.sun.com/jstl/core</taglib-uri>-->
-            <!--<taglib-location>/WEB-INF/c.tld</taglib-location>-->
-        <!--</taglib>-->
-    <!--</jsp-config>-->
 </web-app>

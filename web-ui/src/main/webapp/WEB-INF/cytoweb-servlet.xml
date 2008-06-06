@@ -5,9 +5,9 @@
     <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">
             <value>
-                /cat.html=catController
-                /getNetwork.html=networkActionsController
-                /getNetworkContainer.html=networkContainerController
+                /cat.ctwb=catController
+                /getNetwork.ctwb=networkActionsController
+                /getNetworkContainer.ctwb=networkContainerController
             </value>
         </property>
     </bean>
