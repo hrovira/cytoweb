@@ -4,16 +4,20 @@
     <parent>
         <groupId>org.systemsbiology.apps.cytoweb</groupId>
         <artifactId>cytoweb</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
 
     <artifactId>web-ui</artifactId>
     <packaging>war</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <name>Web User Interface</name>
 
     <build>
         <finalName>cytoweb</finalName>
+        <filters>
+            <filter>default.properties</filter>
+            <filter>build.properties</filter>
+        </filters>        
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -24,36 +28,18 @@
         </resources>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>tomcat-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>deployJsps</id>
-                        <phase>compile</phase>
+                        <id>prepProps</id>
+                        <phase>clean</phase>
                         <configuration>
                             <tasks>
-                                <copy todir="/hrovira/servers/apache-tomcat-5.5.20/webapps/cytoweb" overwrite="true">
-                                    <fileset dir="src/main/webapp">
-                                        <include name="**/*.jsp"/>
-                                    </fileset>
-                                </copy>
-                            </tasks>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>deployWeb</id>
-                        <phase>package</phase>
-                        <configuration>
-                            <tasks>
-                                <delete dir="/hrovira/servers/apache-tomcat-5.5.20/webapps/cytoweb"/>
-                                <copy todir="/hrovira/servers/apache-tomcat-5.5.20/webapps">
-                                    <fileset dir="target">
-                                        <include name="cytoweb.war"/>
-                                    </fileset>
-                                </copy>
+                                <touch file="build.properties"/>
                             </tasks>
                         </configuration>
                         <goals>
@@ -64,6 +50,47 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>deployJsps</id>
+            <activation>
+                <property>
+                    <name>deployJsps</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>deployFiles</id>
+                                <phase>compile</phase>
+                                <configuration>
+                                    <tasks>
+                                        <property file="build.properties"/>
+                                        <property file="default.properties"/>
+                                        <copy todir="${local.tomcat.path}\webapps\cytoweb">
+                                            <fileset dir="src\main\webapp">
+                                                <include name="**/*.jsp"/>
+                                                <include name="**/*.js"/>
+                                                <include name="**/*.css"/>
+                                                <include name="**/*.gif"/>
+                                                <include name="**/*.html"/>
+                                            </fileset>
+                                        </copy>
+                                    </tasks>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <dependencies>
         <dependency>

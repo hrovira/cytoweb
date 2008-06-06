@@ -8,7 +8,7 @@
     <h2>Controls</h2><br/>
     <hr/>
     Cytoscape Network<br/>
-    <c:url value="getNetwork.html" var="getNetworkURL">
+    <c:url value="getNetwork.ctwb" var="getNetworkURL">
         <c:param name="networkFile" value="${param.networkFile}"/>
     </c:url>
     <object type="image/svg+xml" data="${getNetworkURL}" border="1" height="600" width="800">
